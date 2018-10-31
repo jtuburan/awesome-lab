@@ -69,7 +69,7 @@ class Products extends Component {
         localStorage.setItem('prodesc', JSON.stringify(Prodesc));
         localStorage.setItem('image', JSON.stringify(ImageUrl));
         localStorage.setItem('featured', JSON.stringify(ProdFeatured));
-        localStorage.setItem('time', JSON.stringify(time));
+        localStorage.setItem('time', JSON.stringify(Time));
     }
       this.setState({
         works: JSON.parse(localStorage.getItem('works')),
@@ -82,18 +82,25 @@ class Products extends Component {
     var list = JSON.parse(localStorage.getItem('works'));
     var prodesclist = JSON.parse(localStorage.getItem('prodesc'));
     var imgList = JSON.parse(localStorage.getItem('image'));
+    var featuredList = JSON.parse(localStorage.getItem('featured'));
+    var timeList = JSON.parse(localStorage.getItem('time'));
     list.splice(index, 1);
     prodesclist.splice(index, 1);
     imgList.splice(index, 1);
+    featuredList.splice(index, 1);
+    timeList.splice(index, 1);
     this.setState({
       works: list,
       prodesc: prodesclist,
-      imageUrl: imgList
-
+      imageUrl: imgList,
+      FeaturedList: featuredList,
+      TimeList: timeList
     });
     localStorage.setItem('works', JSON.stringify(list));
     localStorage.setItem('prodesc', JSON.stringify(prodesclist));
     localStorage.setItem('image', JSON.stringify(imgList));
+    localStorage.setItem('featured', JSON.stringify(featuredList));
+    localStorage.setItem('time', JSON.stringify(timeList));
   }
 
   render() {
@@ -159,3 +166,4 @@ class Products extends Component {
 }
 
 export default Products;
+

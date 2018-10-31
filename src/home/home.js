@@ -1,62 +1,71 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Carousel } from 'react-bootstrap';
-import { Card, CardImg, CardText, CardBody, CardTitle, Button } from 'reactstrap';
+
 
 class Home extends Component {
-  render() {
-    let products = [{
-      name: "Gundam Unicorn",
-      content: "gundam1",
-      imageUrl: "https://3.bp.blogspot.com/-5hXr0S19AOs/WXGHctZPQTI/AAAAAAAGsLc/OylmXsRDba4Pjs7ZNbpkuKKMPNwmpH71gCLcBGAs/s1600/rg-unicorn-gundam%2B%25281%2529.jpg", 
-      featured: true,
-      price: "2500",
-      date: ""
-    }, {
-      name: "Gundam Barbatos",
-      content: "gundam2",
-      imageUrl: "https://i.redd.it/8g0i6s7susby.jpg",
-      featured: false,
-      price: "2000",
-      date: ""
-    }]
-
-    let productsList = products.map(product => 
-    <Carousel.Item>
-      <img width={500} height={550} alt="900x500" src={product.imageUrl} />
-      <Carousel.Caption>
-        <h3>{product.name}</h3>
-      </Carousel.Caption>
-    </Carousel.Item>
-    );
-
-    let productsCatalog = products.map(product => 
-       <Row>
-        <Col sm="6" md="6">  
-          <Card>
-            <CardImg top width="100%" src={product.imageUrl} alt="Card image cap" />
-            <CardBody>
-              <CardTitle>{product.namel} </CardTitle>
-              <CardText>{product.content}</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
-        </Col>
-        </Row>
-    );
-
+  constructor() {
+    super();
+    this.state =  {
+      works: JSON.parse(localStorage.getItem('works')),
+      prodesc: JSON.parse(localStorage.getItem('prodesc')),
+      imageUrl:JSON.parse(localStorage.getItem('image')),
+      time:JSON.parse(localStorage.getItem('time'))
+    };
+   // console.log(this.state.works.map(function(works, index){ return {works} }).sort(function(time, index){ return {time} }));
+}
+  render() { 
     return (
-      <Grid>
-        <Row className="show-grid">
-          <Col xs={12} md={4}>
-            <Carousel>
-                {productsList}
-            </Carousel>
-          </Col>
-          <Col xs={6} md={8}>
-            {productsCatalog}
-          </Col>
-        </Row>
-      </Grid>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+              <div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" width={500} height={550} src="https://i.redd.it/8g0i6s7susby.jpg" alt="First slide"/>
+                <div class="carousel-caption d-none d-md-block">
+                  <h1>Featured Product</h1>
+                  <h2>prodesc</h2>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" width={500} height={550} src="https://i.redd.it/8g0i6s7susby.jpg" alt="Second slide"/>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-lg">
+          {this.state.time.map(function (time, index){
+            return (
+              <div class = "col-sm-3">
+              <div class="card">
+              <img class="card-img-top"  src={this.state.imageUrl[index]} alt="Card  cap"/>
+              <div class="card-body">
+                <h5 class="card-title">{this.state.works[index]}</h5>
+                <p class="card-text">{this.state.prodesc[index]}</p>
+                <button class="btn btn-primary">Add to Cart</button>
+              </div>
+              </div>
+              </div>
+            );},this)}
+          </div>
+        </div>
+      </div>
      
     );
   }
