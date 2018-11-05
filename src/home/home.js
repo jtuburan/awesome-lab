@@ -10,7 +10,7 @@ class Home extends Component {
       imageUrl:JSON.parse(localStorage.getItem('image')),
       time:JSON.parse(localStorage.getItem('time'))
     };
-   // console.log(this.state.works.map(function(works, index){ return {works} }).sort(function(time, index){ return {time} }));
+   
 }
   render() { 
     return (
