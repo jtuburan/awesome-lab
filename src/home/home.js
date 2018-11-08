@@ -5,6 +5,33 @@ class Home extends Component {
   constructor() {
     super();
     this.state =  {
+      works: [],
+      prodesc:[],
+      image:[],
+      featured:[]
+  };
+
+  if(
+    localStorage.getItem('works') == null 
+    && localStorage.getItem('prodesc') == null 
+    && localStorage.getItem('image') == null
+    && localStorage.getItem('featured') == null
+    && localStorage.getItem('time') == null) {
+
+    var works = [];
+    var prodesc = [];
+    var imageUrl = [];
+    var prodFeatured = [];
+    var time = [];
+
+    localStorage.setItem('works', JSON.stringify(works));
+    localStorage.setItem('prodesc', JSON.stringify(prodesc));
+    localStorage.setItem('image', JSON.stringify(imageUrl));
+    localStorage.setItem('featured', JSON.stringify(prodFeatured));
+    localStorage.setItem('time', JSON.stringify(time));
+}
+
+    this.state =  {
       works: JSON.parse(localStorage.getItem('works')),
       prodesc: JSON.parse(localStorage.getItem('prodesc')),
       imageUrl:JSON.parse(localStorage.getItem('image')),
